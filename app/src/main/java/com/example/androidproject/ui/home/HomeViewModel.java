@@ -10,8 +10,8 @@ public class HomeViewModel extends ViewModel {
 
     public HomeViewModel() {
         mText = new MutableLiveData<>();
-        mText.setValue("It will be the main ");
-        
+        mText.setValue("Welcome on Boxe Tracker");
+
     }
 
     public LiveData<String> getText() {
