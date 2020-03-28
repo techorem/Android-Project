@@ -12,32 +12,23 @@
         tools:layout="@layout/fragment_home">
 
         <action
-            android:id="@+id/action_HomeFragment_to_HomeSecondFragment"
-            app:destination="@id/nav_home_second" />
-    </fragment>
-    <fragment
-        android:id="@+id/nav_home_second"
-        android:name="com.example.androidproject.ui.home.HomeSecondFragment"
-        android:label="@string/home_second"
-        tools:layout="@layout/fragment_home_second">
+            android:id="@+id/action_nav_home_to_nav_newmatch"
+            app:destination="@id/nav_newmatch" />
         <action
-            android:id="@+id/action_HomeSecondFragment_to_HomeFragment"
-            app:destination="@id/nav_home" />
+            android:id="@+id/action_nav_home_to_nav_dataaccess"
+            app:destination="@id/nav_dataaccess" />
 
-        <argument
-            android:name="myArg"
-            app:argType="string" />
     </fragment>
 
     <fragment
-        android:id="@+id/nav_gallery"
-        android:name="com.example.androidproject.ui.gallery.GalleryFragment"
-        android:label="@string/menu_gallery"
-        tools:layout="@layout/fragment_gallery" />
+        android:id="@+id/nav_dataaccess"
+        android:name="com.example.androidproject.ui.dataaccess.dataaccess"
+        android:label="@string/menu_dataaccess"
+        tools:layout="@layout/dataaccess_fragment" />
 
     <fragment
-        android:id="@+id/nav_slideshow"
-        android:name="com.example.androidproject.ui.slideshow.SlideshowFragment"
-        android:label="@string/menu_slideshow"
-        tools:layout="@layout/fragment_slideshow" />
+        android:id="@+id/nav_newmatch"
+        android:name="com.example.androidproject.ui.newmatch.newmatch"
+        android:label="@string/menu_newmatch"
+        tools:layout="@layout/newmatch_fragment" />
 </navigation>
