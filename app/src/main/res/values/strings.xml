@@ -13,4 +13,14 @@
 
 
     <string name="home_second">Home Second</string>
+    <string name="joueur1_newmatch">Name Player 1</string>
+    <string name="joueur2_newmatch">Name Player 2</string>
+    <string name="joueur1_newmatch2">Player 1</string>
+    <string name="joueur2_newmatch2">Player 2</string>
+    <string name="categories_newmatch">Categories</string>
+    <string name="choice_categ_1">poid plume</string>
+    <string name="choice_categ_2">poid moyens</string>
+    <string name="choice_categ_3">poid lourd</string>
+    <string name="location_newmatch">Location :</string>
+    <string name="Button_run_newmatch">Run</string>
 </resources>
