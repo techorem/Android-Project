@@ -21,6 +21,6 @@
     <string name="choice_categ_1">poid plume</string>
     <string name="choice_categ_2">poid moyens</string>
     <string name="choice_categ_3">poid lourd</string>
-    <string name="location_newmatch">Location :</string>
+    <string name="location_newmatch">Location (need wifi &amp; position):</string>
     <string name="Button_run_newmatch">Run</string>
 </resources>

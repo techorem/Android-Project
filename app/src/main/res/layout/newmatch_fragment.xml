@@ -3,7 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.newmatch.newmatch">
+    tools:context=".ui.newmatch.newmatch"
+    tools:showIn="@layout/newmatch_fragment" >
 
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
@@ -147,11 +148,6 @@
         </LinearLayout>
 
 
-
-
-
-
-
         <LinearLayout
             android:id="@+id/linearLayout7"
             android:layout_width="wrap_content"
@@ -164,6 +160,8 @@
                 android:id="@+id/Button01"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:onClick="myClickHandler"
+                android:tag="run"
                 android:text="@string/Button_run_newmatch"
                 android:textSize="20sp" >
             </Button>
@@ -172,7 +170,25 @@
         </LinearLayout>
 
 
+       <LinearLayout
+            android:id="@+id/linearLayout8"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="40dip"
+            android:layout_gravity="center_horizontal">
 
+            <TextView
+                android:id="@+id/TextView06"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="aa"
+                android:textSize="20sp" >
+            </TextView>
+
+
+
+        </LinearLayout>
 
 
 

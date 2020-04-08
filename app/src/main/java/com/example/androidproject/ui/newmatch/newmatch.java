@@ -1,10 +1,12 @@
 package com.example.androidproject.ui.newmatch;
 
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.lifecycle.ViewModelProviders;
 
 import android.Manifest;
 import android.content.Context;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Address;
 import android.location.Criteria;
@@ -22,7 +24,11 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -34,12 +40,18 @@ import java.io.IOException;
 import java.util.List;
 import java.util.Locale;
 
-public class newmatch extends Fragment implements LocationListener {
+public class newmatch extends Fragment implements LocationListener, AdapterView.OnItemSelectedListener{
 
     private NewmatchViewModel mViewModel;
     private TextView addressField;
+    private TextView debugField;
+    private Button buttonRun;
+    private EditText nom_1;
+    private EditText nom_2;
+    private  LinearLayout LB;
     private LocationManager locationManager;
     private String provider;
+    private String tab[] = {"","","",""};
 
     public static newmatch newInstance() {
         return new newmatch();
@@ -54,19 +66,22 @@ public class newmatch extends Fragment implements LocationListener {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
+        //setContentView(R.layout.newmatch_fragment);
 
         mViewModel = ViewModelProviders.of(this).get(NewmatchViewModel.class);
 
-//get the spinner from the xml.
-        Spinner dropdown = getView().findViewById(R.id.spinner1);
-//create a list of items for the spinner.
-        String[] items = new String[]{getString(R.string.choice_categ_1), getString(R.string.choice_categ_2), getString(R.string.choice_categ_3)};
-//create an adapter to describe how the items are displayed, adapters are used in several places in android.
-//There are multiple variations of this, but this is the basic variant
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(getContext(), android.R.layout.simple_spinner_dropdown_item, items);
 
-//set the spinners adapter to the previously created one.
+        //get the spinner from the xml.
+        Spinner dropdown = getView().findViewById(R.id.spinner1);
+        //create a list of items for the spinner.
+        String[] items = new String[]{getString(R.string.choice_categ_1), getString(R.string.choice_categ_2), getString(R.string.choice_categ_3)};
+        //create an adapter to describe how the items are displayed, adapters are used in several places in android.
+        //There are multiple variations of this, but this is the basic variant
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(getContext(), android.R.layout.simple_spinner_dropdown_item, items);
+        //set the spinners adapter to the previously created one.
         dropdown.setAdapter(adapter);
+        dropdown.setOnItemSelectedListener(this);
+
 
         addressField = (TextView) getView().findViewById(R.id.TextView05);
 
@@ -98,8 +113,64 @@ public class newmatch extends Fragment implements LocationListener {
         } else {
             addressField.setText("Location not available");
         }
+
+
+/*
+        FloatingActionButton fab = findViewById(R.id.fab);
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+                        .setAction("Action", null).show();
+            }
+        });*/
+
+
+
+        //buttonRun = new Button(getContext());
+        buttonRun = getView().findViewById(R.id.Button01);
+        buttonRun.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                myClickHandler(v);
+            }
+        });
+
+        /*LB = (LinearLayout) getView().findViewById(R.id.linearLayout7);
+        LB.addView(buttonRun);*/
+
     }
         // TODO: Use the ViewModel
+
+
+
+
+    @Override
+    public void onItemSelected(AdapterView<?> parent, View v, int position, long id) {
+
+        switch (position) {
+            case 0:
+                // Whatever you want to happen when the first item gets selected
+                tab[2] = getString(R.string.choice_categ_1);
+                break;
+            case 1:
+                // Whatever you want to happen when the second item gets selected
+                tab[2] = getString(R.string.choice_categ_2);
+                break;
+            case 2:
+                // Whatever you want to happen when the third item gets selected
+                tab[2] = getString(R.string.choice_categ_3);
+                break;
+
+        }
+        //onDataChanged();
+    }
+
+    @Override
+    public void onNothingSelected(AdapterView<?> parent) {
+        //tab[0] = getString(R.string.choice_categ_1);
+        // TODO Auto-generated method stub
+    }
+
 
 
     /* Request updates at startup */
@@ -148,6 +219,13 @@ public class newmatch extends Fragment implements LocationListener {
         locationManager.removeUpdates(this);
     }
 
+    public void onDataChanged(){
+        debugField = (TextView) getView().findViewById(R.id.TextView06);
+        for (int i =0 ; i< 4 ; i++)
+            debugField.setText(debugField.getText() + tab[i]);
+
+    }
+
     @Override
     public void onLocationChanged(Location location) {
         double lat = (double) (location.getLatitude());
@@ -161,7 +239,11 @@ public class newmatch extends Fragment implements LocationListener {
             e.printStackTrace();
         }
 
-        addressField.setText(address.get(0).getAddressLine(0));
+
+        if (address != null) {
+            addressField.setText(address.get(0).getAddressLine(0));
+            tab[3] = address.get(0).getAddressLine(0);
+        }
     }
 
     @Override
@@ -205,4 +287,44 @@ public class newmatch extends Fragment implements LocationListener {
         }
     }
 
+    /*public void onClick(View v) {
+        myClickHandler(v);
+    }*/
+
+    public void myClickHandler(View view) {
+        //String invalue = "";
+        String tagg = String.valueOf(view.getTag());
+
+        //Log.d("provider : ","=/-----------------------------------------------------------------------------------///"+tagg+"/");
+
+        if (tagg.equals("run")) {
+
+            //Log.d("provider : ","=/-----------------------------------------------------------------------------------///"+tagg);
+            nom_1 = (EditText) getView().findViewById(R.id.EditText01);
+            nom_2 = (EditText) getView().findViewById(R.id.EditText02);
+
+            tab[0] = String.valueOf(nom_1.getText());
+            tab[1] = String.valueOf(nom_2.getText());
+
+            //onDataChanged();
+            /*invalue = TextOperation.getText().toString();
+            prevope = invalue;
+            new CalculateAsyncTask(TextOperation).execute(invalue);*/
+
+
+            /*Intent myIntent = new Intent(this, HystoriActivity.class);
+            myIntent.putExtra("lastOperation", prevope);
+            myIntent.putExtra("lastResult", TextResultat.getText());
+            startActivity(myIntent);*/
+        }else{
+            //TextOperation.setText(TextOperation.getText() + String.valueOf(view.getTag()));
+        }
+
+    }
+
+
+    protected void onPostExecute(String str) {
+        //TextOperation.setText("");
+        //TextResultat.setText(str);
+    }
 }
