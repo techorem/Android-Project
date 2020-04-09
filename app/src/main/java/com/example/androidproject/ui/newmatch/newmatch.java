@@ -324,8 +324,4 @@ public class newmatch extends Fragment implements LocationListener, AdapterView.
     }
 
 
-    protected void onPostExecute(String str) {
-        //TextOperation.setText("");
-        //TextResultat.setText(str);
-    }
 }

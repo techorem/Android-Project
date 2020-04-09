@@ -7,13 +7,35 @@
     tools:context=".ui.CurrentMatchActivity">
 
 
+    <LinearLayout
+        android:id="@+id/LayoutOrient"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" >
 
 
+
+        <include
+        layout="@layout/currentmatch_j1_fragment"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1" />
+
+        <include
+            layout="@layout/currentmatch_j2_fragment"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1" />
+
+
+
+    </LinearLayout>
+
+    <!--
     <TextView
         android:id="@+id/textview1"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="Hello dataacceessssss" />
+        android:layout_height="match_parent" />
+        -->
 
 
 
