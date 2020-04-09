@@ -35,6 +35,7 @@ import android.widget.Toast;
 
 import com.example.androidproject.MainActivity;
 import com.example.androidproject.R;
+import com.example.androidproject.ui.CurrentMatchActivity;
 
 import java.io.IOException;
 import java.util.List;
@@ -312,10 +313,10 @@ public class newmatch extends Fragment implements LocationListener, AdapterView.
             new CalculateAsyncTask(TextOperation).execute(invalue);*/
 
 
-            /*Intent myIntent = new Intent(this, HystoriActivity.class);
-            myIntent.putExtra("lastOperation", prevope);
-            myIntent.putExtra("lastResult", TextResultat.getText());
-            startActivity(myIntent);*/
+            Intent myIntent = new Intent(getContext(), CurrentMatchActivity.class);
+            myIntent.putExtra("infos", tab);
+            startActivity(myIntent);
+
         }else{
             //TextOperation.setText(TextOperation.getText() + String.valueOf(view.getTag()));
         }
