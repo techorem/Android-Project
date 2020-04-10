@@ -3,8 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.newmatch.newmatch"
-    tools:showIn="@layout/newmatch_fragment" >
+    tools:context=".ui.newmatch.newmatch" >
 
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
@@ -24,6 +23,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/joueur1_newmatch"
+                android:textColor="@android:color/holo_blue_dark"
                 android:textSize="20sp" >
             </TextView>
 
@@ -32,6 +32,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/joueur2_newmatch"
+                android:textColor="@android:color/holo_blue_dark"
                 android:textSize="20sp"
                 android:layout_marginStart="60dp"
                 android:layout_marginLeft="60dp">
@@ -86,6 +87,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/categories_newmatch"
+                android:textColor="@android:color/holo_blue_dark"
                 android:textSize="20sp" >
             </TextView>
 
@@ -123,6 +125,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/location_newmatch"
+                android:textColor="@android:color/holo_blue_dark"
                 android:textSize="20sp" >
             </TextView>
 
@@ -163,13 +166,14 @@
                 android:onClick="myClickHandler"
                 android:tag="run"
                 android:text="@string/Button_run_newmatch"
+                android:textColor="@android:color/holo_blue_dark"
                 android:textSize="20sp" >
             </Button>
 
 
         </LinearLayout>
 
-
+<!--
        <LinearLayout
             android:id="@+id/linearLayout8"
             android:layout_width="wrap_content"
@@ -189,7 +193,7 @@
 
 
         </LinearLayout>
-
+-->
 
 
     </LinearLayout>

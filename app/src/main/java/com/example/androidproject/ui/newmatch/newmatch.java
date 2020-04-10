@@ -33,7 +33,6 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.androidproject.MainActivity;
 import com.example.androidproject.R;
 import com.example.androidproject.ui.CurrentMatchActivity;
 
@@ -67,10 +66,8 @@ public class newmatch extends Fragment implements LocationListener, AdapterView.
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        //setContentView(R.layout.newmatch_fragment);
 
         mViewModel = ViewModelProviders.of(this).get(NewmatchViewModel.class);
-
 
         //get the spinner from the xml.
         Spinner dropdown = getView().findViewById(R.id.spinner1);
@@ -95,11 +92,7 @@ public class newmatch extends Fragment implements LocationListener, AdapterView.
         if (ActivityCompat.checkSelfPermission(getContext(), Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(getContext(), Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
             // TODO: Consider calling
             //    ActivityCompat#requestPermissions
-            // here to request the missing permissions, and then overriding
-            //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
-            //                                          int[] grantResults)
-            // to handle the case where the user grants the permission. See the documentation
-            // for ActivityCompat#requestPermissions for more details.
+            // here to request the missing permissions
             ActivityCompat.requestPermissions(getActivity(),new String[]{Manifest.permission.ACCESS_FINE_LOCATION,Manifest.permission.ACCESS_COARSE_LOCATION},200);//MY_PERMISSIONS_REQUEST_ACCESS_FINE_LOCATION
 
             return;
@@ -116,29 +109,12 @@ public class newmatch extends Fragment implements LocationListener, AdapterView.
         }
 
 
-/*
-        FloatingActionButton fab = findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });*/
-
-
-
-        //buttonRun = new Button(getContext());
         buttonRun = getView().findViewById(R.id.Button01);
         buttonRun.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 myClickHandler(v);
             }
         });
-
-        /*LB = (LinearLayout) getView().findViewById(R.id.linearLayout7);
-        LB.addView(buttonRun);*/
-
     }
         // TODO: Use the ViewModel
 
@@ -163,7 +139,6 @@ public class newmatch extends Fragment implements LocationListener, AdapterView.
                 break;
 
         }
-        //onDataChanged();
     }
 
     @Override
@@ -183,10 +158,7 @@ public class newmatch extends Fragment implements LocationListener, AdapterView.
             // TODO: Consider calling
             //    ActivityCompat#requestPermissions
             // here to request the missing permissions, and then overriding
-            //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
-            //                                          int[] grantResults)
-            // to handle the case where the user grants the permission. See the documentation
-            // for ActivityCompat#requestPermissions for more details.
+            ActivityCompat.requestPermissions(getActivity(),new String[]{Manifest.permission.ACCESS_FINE_LOCATION,Manifest.permission.ACCESS_COARSE_LOCATION},200);//MY_PERMISSIONS_REQUEST_ACCESS_FINE_LOCATION
             return;
         }
 
@@ -220,17 +192,15 @@ public class newmatch extends Fragment implements LocationListener, AdapterView.
         locationManager.removeUpdates(this);
     }
 
-    public void onDataChanged(){
+    /*public void onDataChanged(){
         debugField = (TextView) getView().findViewById(R.id.TextView06);
         for (int i =0 ; i< 4 ; i++)
             debugField.setText(debugField.getText() + tab[i]);
 
-    }
+    }*/
 
     @Override
     public void onLocationChanged(Location location) {
-        double lat = (double) (location.getLatitude());
-        double lng = (double) (location.getLongitude());
 
         Geocoder geocoder= new Geocoder(getContext(), Locale.getDefault());
         List<Address> address = null; // Here 1 represent max location result to returned, by documents it recommended 1 to 5
@@ -272,8 +242,7 @@ public class newmatch extends Fragment implements LocationListener, AdapterView.
         switch (requestCode) {
             case 200: {
                 // If request is cancelled, the result arrays are empty.
-                if (grantResults.length > 0
-                        && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                     // permission was granted, yay! Do the
                     // contacts-related task you need to do.
                 } else {
@@ -283,45 +252,27 @@ public class newmatch extends Fragment implements LocationListener, AdapterView.
                 return;
             }
 
-            // other 'case' lines to check for other
-            // permissions this app might request.
         }
     }
 
-    /*public void onClick(View v) {
-        myClickHandler(v);
-    }*/
 
     public void myClickHandler(View view) {
-        //String invalue = "";
         String tagg = String.valueOf(view.getTag());
-
-        //Log.d("provider : ","=/-----------------------------------------------------------------------------------///"+tagg+"/");
 
         if (tagg.equals("run")) {
 
-            //Log.d("provider : ","=/-----------------------------------------------------------------------------------///"+tagg);
             nom_1 = (EditText) getView().findViewById(R.id.EditText01);
             nom_2 = (EditText) getView().findViewById(R.id.EditText02);
 
             tab[0] = String.valueOf(nom_1.getText());
             tab[1] = String.valueOf(nom_2.getText());
 
-            //onDataChanged();
-            /*invalue = TextOperation.getText().toString();
-            prevope = invalue;
-            new CalculateAsyncTask(TextOperation).execute(invalue);*/
-
 
             Intent myIntent = new Intent(getContext(), CurrentMatchActivity.class);
             myIntent.putExtra("infos", tab);
             startActivity(myIntent);
-
-        }else{
-            //TextOperation.setText(TextOperation.getText() + String.valueOf(view.getTag()));
         }
 
     }
-
 
 }

@@ -23,4 +23,8 @@
     <string name="choice_categ_3">poid lourd</string>
     <string name="location_newmatch">Location (need wifi &amp; position):</string>
     <string name="Button_run_newmatch">Run</string>
+    <string name="coup_de_npoint_r_ussis">Coup de \npoint réussis</string>
+    <string name="coup_de_npied_r_ussis">Coup de \npied réussis</string>
+    <string name="coup_de_npoint_manqu">Coup de \npoint manqué</string>
+    <string name="coup_de_npied_manqu">Coup de \npied manqué</string>
 </resources>

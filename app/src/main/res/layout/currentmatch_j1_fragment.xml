@@ -82,7 +82,7 @@
                                 android:onClick="myClickHandler"
                                 android:textColor="@android:color/holo_green_dark"
                                 android:tag="1"
-                                android:text="Coup de \npoint réussis"
+                                android:text="@string/coup_de_npoint_r_ussis"
                                 />
 
                             <Button android:id="@+id/button2"
@@ -92,7 +92,7 @@
                                 android:onClick="myClickHandler"
                                 android:textColor="@android:color/holo_green_dark"
                                 android:tag="2"
-                                android:text="Coup de \npied réussis" />
+                                android:text="@string/coup_de_npied_r_ussis" />
 
                         </LinearLayout>
 
@@ -108,7 +108,7 @@
                                 android:onClick="myClickHandler"
                                 android:textColor="@android:color/holo_red_dark"
                                 android:tag="3"
-                                android:text="Coup de \npoint manqué" />
+                                android:text="@string/coup_de_npoint_manqu" />
 
                             <Button android:id="@+id/button5"
                                 android:layout_width="wrap_content"
@@ -116,7 +116,7 @@
                                 android:layout_weight="1"
                                 android:textColor="@android:color/holo_red_dark"
                                 android:tag="4"
-                                android:text="Coup de \npied manqué" />
+                                android:text="@string/coup_de_npied_manqu" />
 
 
                         </LinearLayout>
