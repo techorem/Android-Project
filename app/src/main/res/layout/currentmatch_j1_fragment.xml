@@ -72,7 +72,8 @@
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:orientation="horizontal">
+                            android:orientation="horizontal"
+                            android:weightSum="2">
 
                             <Button
                                 android:id="@+id/button1"
@@ -85,6 +86,7 @@
                                 android:text="@string/coup_de_npoint_r_ussis"
                                 />
 
+
                             <Button android:id="@+id/button2"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
@@ -94,6 +96,7 @@
                                 android:tag="2"
                                 android:text="@string/coup_de_npied_r_ussis" />
 
+
                         </LinearLayout>
 
                         <LinearLayout
@@ -101,7 +104,7 @@
                             android:layout_height="wrap_content"
                             android:orientation="horizontal">
 
-                            <Button android:id="@+id/button4"
+                            <Button android:id="@+id/button3"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_weight="1"
@@ -110,10 +113,11 @@
                                 android:tag="3"
                                 android:text="@string/coup_de_npoint_manqu" />
 
-                            <Button android:id="@+id/button5"
+                            <Button android:id="@+id/button4"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_weight="1"
+                                android:onClick="myClickHandler"
                                 android:textColor="@android:color/holo_red_dark"
                                 android:tag="4"
                                 android:text="@string/coup_de_npied_manqu" />
@@ -127,12 +131,67 @@
 
                 </LinearLayout>
 
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal"
+                    android:weightSum="3">
+
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:gravity="center_horizontal|center_vertical"
+                        android:orientation="vertical"
+                        android:layout_weight="2">
+
+                        <Button android:id="@+id/Button06"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textColor="@android:color/holo_blue_dark"
+                            android:tag="photo"
+                            android:onClick="myClickHandler"
+                            android:layout_gravity="center"
+                            android:text="@string/take_photo" />
+
+                        <TextView
+                            android:id="@+id/TextViewphoto2"
+                            android:text="10 max"
+                            android:textColor="@android:color/holo_blue_dark"
+                            android:textSize="15sp"
+                            android:layout_gravity="center"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="center_horizontal|center_vertical">
+
+                        </TextView>
+                    </LinearLayout>
+
+                    <TextView
+                        android:id="@+id/TextViewphoto"
+                        android:layout_weight="1"
+                        android:text="@string/you_have_no_pictures_yet_max_10_pics"
+                        android:textColor="@android:color/holo_blue_dark"
+                        android:textSize="20sp"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:gravity="center_horizontal|center_vertical">
+
+                    </TextView>
+
+                    <!--
+                    <ImageView
+                        android:id="@+id/imageview01"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                    </ImageView>
+                    -->
 
 
 
 
-
-
+                </LinearLayout>
 
 
             </LinearLayout>
