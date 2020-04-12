@@ -31,4 +31,6 @@
     <string name="sufixtextphoto"> pictures, they will be available in the review.</string>
     <string name="take_photo">Take Photo</string>
     <string name="you_have_no_pictures_yet_max_10_pics">You have no pictures yet, max 10 pics.</string>
+    <string name="saved_localy">Saved Localy</string>
+    <string name="saved_on_server">Saved on Server</string>
 </resources>

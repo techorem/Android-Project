@@ -39,6 +39,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".ui.CurrentMatchActivity"  />
+        <activity android:name=".ui.StatisticsActivity"  />
     </application>
 
 </manifest>
