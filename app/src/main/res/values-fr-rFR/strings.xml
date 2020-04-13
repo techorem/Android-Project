@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Android project</string>
+    <string name="menu_newmatch">Nouveau Match</string>
+    <string name="menu_dataaccess">Matchs Precedents</string>
+    <string name="joueur1_newmatch">Nom Joueur 1</string>
+    <string name="joueur2_newmatch">Nom Joueur 2</string>
+    <string name="joueur1_newmatch2">"Joueur 1 "</string>
+    <string name="joueur2_newmatch2">"Joueur 2 "</string>
+    <string name="categories_newmatch">Categories</string>
+    <string name="choice_categ_1">Poid Plume</string>
+    <string name="choice_categ_2">Poid Moyen</string>
+    <string name="choice_categ_3">Poid Lourd</string>
+    <string name="location_newmatch">Localisation (besoin du wifi et position)</string>
+    <string name="Button_run_newmatch">Démarrer</string>
+    <string name="coup_de_npoint_r_ussis">Coup de Point réussis : </string>
+    <string name="coup_de_npied_r_ussis">"Coup de pied réussis : </string>
+    <string name="coup_de_npoint_manqu">"Coup de Point Manqué : </string>
+    <string name="coup_de_npied_manqu">Coup de Pied Manqué : </string>
+    <string name="prefixtextphoto">Vous avez :</string>
+    <string name="sufixtextphoto">photos, elles seront disponible dans la review.</string>
+    <string name="take_photo">Prendre Photo</string>
+    <string name="you_have_no_pictures_yet_max_10_pics">Vous n\'avez pas de photo pour l\'instant.</string>
+    <string name="saved_localy">"Savegardé localement "</string>
+    <string name="saved_on_server">Sauvegardé sur serveur</string>
+    <string name="location">Localisation</string>
+    <string name="date">Date</string>
+    <string name="unknown">unknown</string>
+    <string name="_10_max">10 max</string>
+    <string name="finish">Finir</string>
+    <string name="domination">Domination</string>
+    <string name="parity_hand_foot">Paritée mains / pieds</string>
+    <string name="ratio_kick_usefull">Ratio coup réussis</string>
+    <string name="Defense_global">Deffence globalle</string>
+    <string name="stat_of_the_match">Statistics du Match</string>
+    <string name="basic_data">Données Basic</string>
+    <string name="photos_gallery">Gallerie Photo</string>
+</resources>

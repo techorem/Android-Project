@@ -155,7 +155,7 @@
             android:layout_alignParentRight="true"
             android:textColor="@android:color/holo_red_dark"
             android:tag="finish"
-            android:text="finish"
+            android:text="@string/finish"
            />
 
     </RelativeLayout>

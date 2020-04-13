@@ -96,13 +96,16 @@ public class dataaccess extends Fragment {
     }
 
     private int numberOfPreviousMatch(){
+
         return 4;
     }
+
 
     private String playersOfTheMatch(int numerodumatch){
 
         return "Tom"+" vs "+"Alex";
     }
+
 
 
 

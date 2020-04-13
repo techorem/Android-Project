@@ -37,7 +37,7 @@ public class StatisticsActivity extends AppCompatActivity {
         setContentView(R.layout.activity_statistics);
 
         ActionBar actionBar = this.getSupportActionBar();
-        actionBar.setTitle("Statistics of the Match");
+        actionBar.setTitle(getString(R.string.stat_of_the_match));
 
         viewPager = findViewById(R.id.pager);
         viewPager.setAdapter(createCardAdapter());
@@ -52,7 +52,7 @@ public class StatisticsActivity extends AppCompatActivity {
                     public void onConfigureTab(@NonNull TabLayout.Tab tab, int position) {
                         //tab.setText("OBJECT " + (position + 1));
                         if (position == 0){
-                            tab.setText("Basic Data");
+                            tab.setText(getString(R.string.basic_data));
                         }
                         if (position == 1){
                             tab.setText(texts[0]);
@@ -61,7 +61,7 @@ public class StatisticsActivity extends AppCompatActivity {
                             tab.setText(texts[1]);
                         }
                         if (position == 3){
-                            tab.setText("Photos Gallery");
+                            tab.setText(getString(R.string.photos_gallery));
                         }
                     }
                 }

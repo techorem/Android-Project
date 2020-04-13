@@ -29,7 +29,7 @@
                     android:id="@+id/TextView01"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Domination"
+                    android:text="@string/domination"
                     android:textColor="@android:color/holo_blue_dark"
                     android:textSize="20sp" >
                 </TextView>
@@ -67,7 +67,7 @@
                     android:id="@+id/TextView03"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Parity hand foot"
+                    android:text="@string/parity_hand_foot"
                     android:textColor="@android:color/holo_blue_dark"
                     android:textSize="20sp" >
                 </TextView>
@@ -105,7 +105,7 @@
                     android:id="@+id/TextView05"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Ratio kick usefull"
+                    android:text="@string/ratio_kick_usefull"
                     android:textColor="@android:color/holo_blue_dark"
                     android:textSize="20sp" >
                 </TextView>
@@ -160,7 +160,7 @@
                     android:id="@+id/TextView08"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Deffense Global"
+                    android:text="@string/Defense_global"
                     android:textColor="@android:color/holo_blue_dark"
                     android:textSize="20sp" >
                 </TextView>

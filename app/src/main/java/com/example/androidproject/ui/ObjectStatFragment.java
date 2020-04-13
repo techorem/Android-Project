@@ -94,6 +94,9 @@ public class ObjectStatFragment extends Fragment {
 
 
     public void setBasic() {
+
+        TextView tv0 = (TextView) getView().findViewById(R.id.TextView10);
+        tv0.setText(texts[4]);
         TextView tv1 = (TextView) getView().findViewById(R.id.TextView03);
         tv1.setText(texts[0]);
         TextView tv2 = (TextView) getView().findViewById(R.id.TextView04);

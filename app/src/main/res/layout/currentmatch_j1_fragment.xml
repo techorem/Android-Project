@@ -156,7 +156,7 @@
 
                         <TextView
                             android:id="@+id/TextViewphoto2"
-                            android:text="10 max"
+                            android:text="@string/_10_max"
                             android:textColor="@android:color/holo_blue_dark"
                             android:textSize="15sp"
                             android:layout_gravity="center"
