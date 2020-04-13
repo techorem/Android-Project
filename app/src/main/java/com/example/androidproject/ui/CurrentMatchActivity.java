@@ -199,7 +199,7 @@ public class CurrentMatchActivity extends AppCompatActivity implements CurrentMa
             if (i==4||i==8)
                 textat = getString(R.string.coup_de_npied_manqu);
             Button boutonscompteurs = findViewById(idbutton[i]);
-            boutonscompteurs.setText(MessageFormat.format("{0}{1}", textat, compteurs[i]));
+            boutonscompteurs.setText(MessageFormat.format("{0} {1}", textat, compteurs[i]));
         }
 
     }
@@ -262,7 +262,6 @@ public class CurrentMatchActivity extends AppCompatActivity implements CurrentMa
                 photoFile = createImageFile();
             } catch (IOException ex) {
                 // Error occurred while creating the File
-                Log.d("shit","shit ----------------------------------");
             }
 
             // Continue only if the File was successfully created

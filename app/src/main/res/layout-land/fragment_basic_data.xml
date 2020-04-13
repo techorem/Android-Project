@@ -9,13 +9,21 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical" >
+        android:orientation="horizontal" >
+
+        <LinearLayout
+            android:id="@+id/linearLayoutland1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="40dip"
+            android:orientation="vertical"
+            android:layout_weight="1"
+            android:layout_gravity="center_horizontal">
 
         <LinearLayout
             android:id="@+id/linearLayout7"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="40dip"
             android:orientation="horizontal"
             android:layout_gravity="center_horizontal">
 
@@ -42,7 +50,7 @@
                 android:id="@+id/TextView10"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="unknown"
+                android:text="@string/unknown"
                 android:textSize="20sp" >
             </TextView>
 
@@ -79,7 +87,7 @@
                     android:id="@+id/TextView03"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="unknown"
+                    android:text="@string/unknown"
                     android:textSize="20sp" >
                 </TextView>
                 
@@ -107,16 +115,38 @@
                     android:id="@+id/TextView04"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="unknown"
+                    android:text="@string/unknown"
                     android:textSize="20sp">
                 </TextView>
 
             </LinearLayout>
-            
-               
-            
+
+
+
+        </LinearLayout>
         </LinearLayout>
 
+
+
+
+
+
+
+
+        <View
+            android:layout_width="@dimen/epaisseur_cadre"
+            android:layout_height="match_parent"
+            android:background="@android:color/holo_blue_dark" />
+
+
+        <LinearLayout
+            android:id="@+id/linearLayoutland2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="40dip"
+            android:orientation="vertical"
+            android:layout_weight="1"
+            android:layout_gravity="center_horizontal">
 
 
 
@@ -125,7 +155,6 @@
             android:id="@+id/linearLayout3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="40dip"
             android:orientation="horizontal"
             android:layout_gravity="center_horizontal">
 
@@ -152,8 +181,10 @@
                 android:id="@+id/TextView06"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="unknown"
-                android:textSize="20sp"></TextView>
+                android:text="@string/unknown"
+                android:textSize="20sp">
+
+            </TextView>
 
         </LinearLayout>
 
@@ -190,7 +221,7 @@
                 android:id="@+id/TextView08"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="unknown"
+                android:text="@string/unknown"
                 android:textSize="20sp" >
             </TextView>
 
@@ -198,7 +229,7 @@
         </LinearLayout>
 
 
-        
+        </LinearLayout>
 
     </LinearLayout>
 

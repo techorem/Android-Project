@@ -23,9 +23,9 @@
     <string name="choice_categ_3">poid lourd</string>
     <string name="location_newmatch">Location (need wifi &amp; position):</string>
     <string name="Button_run_newmatch">Run</string>
-    <string name="coup_de_npoint_r_ussis">Coup de point\n réussis : </string>
+    <string name="coup_de_npoint_r_ussis">Coup de poing\n réussis : </string>
     <string name="coup_de_npied_r_ussis">Coup de pied\n réussis : </string>
-    <string name="coup_de_npoint_manqu">Coup de point\n manqué : </string>
+    <string name="coup_de_npoint_manqu">Coup de poing\n manqué : </string>
     <string name="coup_de_npied_manqu">Coup de pied\n manqué : </string>
     <string name="prefixtextphoto">You got : </string>
     <string name="sufixtextphoto"> pictures, they will be available in the review.</string>
@@ -33,4 +33,7 @@
     <string name="you_have_no_pictures_yet_max_10_pics">You have no pictures yet, max 10 pics.</string>
     <string name="saved_localy">Saved Localy</string>
     <string name="saved_on_server">Saved on Server</string>
+    <string name="location">Location</string>
+    <string name="date">Date</string>
+    <string name="unknown">unknown</string>
 </resources>
