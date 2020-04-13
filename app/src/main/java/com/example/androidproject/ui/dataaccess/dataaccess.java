@@ -10,7 +10,6 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,7 +17,6 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 
 import com.example.androidproject.R;
-import com.example.androidproject.ui.CurrentMatchActivity;
 import com.example.androidproject.ui.DBManager;
 import com.example.androidproject.ui.StatisticsActivity;
 
@@ -65,9 +63,7 @@ public class dataaccess extends Fragment {
             limitedistance = numberOfPreviousMatch() - 5;
         }
 
-        for(int i = 5 ; i >1 ; i --){
-            Log.d("ffff","+++++++++++++++++++++++++++++++++++++"+i);
-        }
+
 
         for (int i = limitelocal;i>limitedistance;i--){
 
@@ -87,7 +83,7 @@ public class dataaccess extends Fragment {
 
             LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
 
-            //lp.setGravity(Gravity.CENTER);
+
             button.setLayoutParams(lp);
         }
 
@@ -140,9 +136,6 @@ public class dataaccess extends Fragment {
         Cursor values = dbManager.fetch();
         values.move(id);
 
-        Log.d("8","//////////////////////////////////////////////////"+values.getString(8));
-        Log.d("6",""+id);
-
         for (int i = 0; i <5;i++){
             texts[i] = values.getString(i + 1);
         }
@@ -155,9 +148,9 @@ public class dataaccess extends Fragment {
         char j = '0';
         int cursor = 0;
 
-        for (int i = 0; i < values.getInt(7)-1 ; i++ ){
+        for (int i = 0; i < values.getInt(7) ; i++ ){
 
-            while (j != '-'){
+            while ( (j != '-' ) && ( cursor != values.getString(8).length() ) ){
                 j = values.getString(8).charAt(cursor);
                 buffer = buffer.concat(j + "");
                 cursor++;
@@ -166,24 +159,22 @@ public class dataaccess extends Fragment {
             photos[i] = buffer;
             buffer = "";
         }
+
         dbManager.close();
     }
 
-
     public void myClickHandler(View view) {
-        //String tagg = String.valueOf(view.getTag());
         String tagg = view.getTag().toString();
 
         backdatabase(Integer.parseInt(tagg));
 
-        Log.d("****************","///////////////////----------------------------"+tagg);
 
 
         Intent myIntent = new Intent(getContext(), StatisticsActivity.class);
         myIntent.putExtra("id", tagg);
         myIntent.putExtra("photos", photos);
         myIntent.putExtra("texts", texts);
-        //myIntent.putExtra("compteurs", compteurs);
+        myIntent.putExtra("compteurs", compteurs);
         startActivity(myIntent);
     }
 

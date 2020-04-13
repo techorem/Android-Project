@@ -1,5 +1,6 @@
 package com.example.androidproject.ui;
 
+import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
@@ -27,8 +28,15 @@ public class ObjectStatFragment extends Fragment {
     private Integer counter;
     private int[] compteurs =new int[9];
     private String[] photos= new String[10];
-    private String[] texts= new String[4];
+    private String[] texts= new String[5];
     public LinearLayout LinearGallery;
+
+    private int id ;
+
+
+
+    private DBManager dbManager;
+
 
     public ObjectStatFragment() {
         // Required empty public constructor
@@ -71,23 +79,27 @@ public class ObjectStatFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         Bundle args = getArguments();
-        //TextView textViewCounter  = view.findViewById(R.id.TextView01);
-        //textViewCounter.setText(Integer.toString(args.getInt(ARG_OBJECT)));
         StatisticsActivity st = new StatisticsActivity();
+
+        String s = ((MyApplication) getActivity().getApplication()).getSomeVariable();
+        id = Integer.parseInt(s);
+
         if( args.getInt(ARG_OBJECT) == 1){
-            texts = st.getTexts();
+
+            backdatabase(id);
             setBasic();
         }
         if( args.getInt(ARG_OBJECT) == 2){
-            compteurs = st.getCompteurs();
+            backdatabase(id);
+
             setStat1();
         }
         if( args.getInt(ARG_OBJECT) == 3){
-            compteurs = st.getCompteurs();
+            backdatabase(id);
             setStat2();
         }
         if( args.getInt(ARG_OBJECT) == 4){
-            photos = st.getPhotos();
+            backdatabase(id);
             setPic();
         }
     }
@@ -146,6 +158,7 @@ public class ObjectStatFragment extends Fragment {
         float totalreussiscoup_j1 = compteurs[1]+compteurs[2];
         float totalreussiscoup_j2 = compteurs[5]+compteurs[6];
 
+        Log.d("compteurs", "///"+ compteurs[1]+" "+compteurs[2]+" "+compteurs[3]+" "+compteurs[4]+" "+compteurs[5]+" "+compteurs[6]+" "+compteurs[7]+" "+compteurs[8]);
 
         TextView tv1 = (TextView) getView().findViewById(R.id.TextView02);
         tv1.setText(MessageFormat.format("{0}%", (int)((totalj2 / total) * 100)));
@@ -168,7 +181,7 @@ public class ObjectStatFragment extends Fragment {
     public void setPic() {
 
         for(int i= 0; i < photos.length;i++){
-
+            Log.d("photo"+i,"////////////////////////////////////////////////////////////"+photos[i]);
             ImageView image = new ImageView(getContext());
             LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
             image.setLayoutParams(lp);
@@ -179,5 +192,85 @@ public class ObjectStatFragment extends Fragment {
             LinearGallery.addView(image);
         }
 
+    }
+
+
+
+
+    private void backdatabase(int id){
+        dbManager = new DBManager(getContext());
+        dbManager.open();
+
+        Cursor values = dbManager.fetch();
+        values.move(id);
+
+        for (int i = 0; i <5;i++){
+            texts[i] = values.getString(i + 1);
+        }
+
+
+        char value = 0;
+        int cursor2 = 0;
+        String stat = "";
+        int statint =0;
+
+        for (int i = 1; i < 9;i++){
+
+            while ((value != '-')&&(cursor2 != values.getString(6).length())){
+                value = values.getString(6).charAt(cursor2);
+                stat = stat.concat(value + "");
+
+                cursor2++;
+            }
+
+            if(stat!=""){
+                if (stat.charAt(stat.length()-1)==('-')){
+                    stat = stat.substring(0, stat.length() - 1);
+
+                }
+                statint = Integer.parseInt(stat);
+            }
+
+
+            compteurs[i] = statint;
+            stat="";
+            statint = 0;
+            cursor2++;
+            if(cursor2 < values.getString(6).length())
+                value = values.getString(6).charAt(cursor2);
+
+        }
+
+
+
+        /*for (int i = 0; i < 8;i++){
+            compteurs[i] = values.getString(6).charAt(i*2);
+        }*/
+
+        String buffer = "";
+        char j = '0';
+        int cursor = 0;
+
+        for (int i = 0; i < values.getInt(7) ; i++ ){
+
+            while ( (j != '-' ) && ( cursor != values.getString(8).length() ) ){
+                j = values.getString(8).charAt(cursor);
+                buffer = buffer.concat(j + "");
+                cursor++;
+            }
+
+            if(buffer!=""){
+                if (buffer.charAt(buffer.length()-1)==('-'))
+                    buffer = buffer.substring(0, buffer.length() - 1);
+            }
+
+            photos[i] = buffer;
+            buffer = "";
+            cursor++;
+            if(cursor < values.getString(8).length())
+                j = values.getString(8).charAt(cursor);
+        }
+
+        dbManager.close();
     }
 }
