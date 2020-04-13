@@ -1,6 +1,5 @@
 package com.example.androidproject.ui.newmatch;
 
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.lifecycle.ViewModelProviders;
 
@@ -35,6 +34,7 @@ import android.widget.Toast;
 
 import com.example.androidproject.R;
 import com.example.androidproject.ui.CurrentMatchActivity;
+import com.example.androidproject.ui.DBManager;
 
 import java.io.IOException;
 import java.util.List;
@@ -52,6 +52,7 @@ public class newmatch extends Fragment implements LocationListener, AdapterView.
     private LocationManager locationManager;
     private String provider;
     private String tab[] = {"","","",""};
+
 
     public static newmatch newInstance() {
         return new newmatch();
@@ -107,7 +108,6 @@ public class newmatch extends Fragment implements LocationListener, AdapterView.
         } else {
             addressField.setText("Location not available");
         }
-
 
         buttonRun = getView().findViewById(R.id.Button01);
         buttonRun.setOnClickListener(new View.OnClickListener() {
