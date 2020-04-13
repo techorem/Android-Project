@@ -19,11 +19,11 @@ public class DBManager {
 
     private SQLiteDatabase database;
 
-    DBManager(Context c) {
+    public DBManager(Context c) {
         context = c;
     }
 
-    DBManager open() throws SQLException {
+    public DBManager open() throws SQLException {
         dbHelper = new DatabaseHelper(context);
         database = dbHelper.getWritableDatabase();
         return this;
