@@ -3,6 +3,7 @@ package com.example.androidproject.ui.dataaccess;
 import androidx.lifecycle.ViewModelProviders;
 
 import android.content.Intent;
+import android.database.Cursor;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -16,7 +17,9 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 
 import com.example.androidproject.R;
+import com.example.androidproject.ui.DBManager;
 import com.example.androidproject.ui.StatisticsActivity;
+
 
 public class dataaccess extends Fragment {
 
@@ -27,9 +30,8 @@ public class dataaccess extends Fragment {
     public Button button;
     public LinearLayout LinearLocal;
     public LinearLayout LinearDistance;
-    public static dataaccess newInstance() {
-        return new dataaccess();
-    }
+
+    private DBManager dbManager;
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
@@ -42,6 +44,7 @@ public class dataaccess extends Fragment {
         super.onActivityCreated(savedInstanceState);
         mViewModel = ViewModelProviders.of(this).get(DataaccessViewModel.class);
         // TODO: Use the ViewModel
+
         int limitelocal;
         int limitedistance;
 
@@ -93,21 +96,27 @@ public class dataaccess extends Fragment {
             button.setLayoutParams(lp);
         }
 
+        dbManager = new DBManager(this.getContext());
+        dbManager.open();
+
     }
 
     private int numberOfPreviousMatch(){
 
-        return 4;
+        Cursor values = dbManager.fetch();
+
+        return values.getCount();
     }
 
 
     private String playersOfTheMatch(int numerodumatch){
 
-        return "Tom"+" vs "+"Alex";
+
+        Cursor values = dbManager.fetch();
+        values.move(numerodumatch);
+
+        return values.getString(1) + " vs "+ values.getString(2);
     }
-
-
-
 
     public void myClickHandler(View view) {
         String tagg = String.valueOf(view.getTag());
