@@ -1,6 +1,7 @@
 package com.example.androidproject.ui;
 
 import android.app.TabActivity;
+import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -30,9 +31,9 @@ public class StatisticsActivity extends AppCompatActivity {
     private int[] compteurs =new int[9];
     private String[] photos= new String[10];
     private String[] texts= new String[5];
-    private int id = 1;
+    private int id ;
 
-
+    Intent intent = getIntent();
     private static final String PHOTOS = "photos";
     private static final String TEXTS = "texts";
     private static final String COMPTEURS = "compteurs";
@@ -51,7 +52,14 @@ public class StatisticsActivity extends AppCompatActivity {
 
 
         Bundle extras = getIntent().getExtras();
-        id = extras.getInt("id");
+        String st = extras.getString("id");
+        texts = extras.getStringArray("texts");
+        photos = extras.getStringArray("photos");
+        compteurs = extras.getIntArray("compteurs");
+
+        id = Integer.parseInt(st);
+
+
         Log.d("/////////////id ","/////////////////////////////////////////////////"+id);
 
         ActionBar actionBar = this.getSupportActionBar();
@@ -62,7 +70,7 @@ public class StatisticsActivity extends AppCompatActivity {
         TabLayout tabLayout = findViewById(R.id.tab_layout);
 
 
-        backdatabase(id);
+        //backdatabase(id);
 
         new TabLayoutMediator(tabLayout, viewPager,
                 new TabLayoutMediator.TabConfigurationStrategy() {
@@ -101,7 +109,7 @@ public class StatisticsActivity extends AppCompatActivity {
         values.move(id);
 
         Log.d("8","//////////////////////////////////////////////////"+values.getString(8));
-        Log.d("6",values.getString(6));
+        Log.d("6",""+id);
 
         for (int i = 0; i <5;i++){
             texts[i] = values.getString(i + 1);
@@ -130,18 +138,18 @@ public class StatisticsActivity extends AppCompatActivity {
     }
 
     public String[] getPhotos(){
-        backdatabase(id);
+        //backdatabase(id);
         Log.d("Statphoto",""+photos[0]);
         return photos;
     }
 
     public String[] getTexts(){
-        backdatabase(id);
+        //backdatabase(id);
         return texts;
     }
 
     public int[] getCompteurs(){
-        backdatabase(id);
+        //backdatabase(id);
         return compteurs;
     }
 

@@ -18,6 +18,7 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 
 import com.example.androidproject.R;
+import com.example.androidproject.ui.CurrentMatchActivity;
 import com.example.androidproject.ui.DBManager;
 import com.example.androidproject.ui.StatisticsActivity;
 
@@ -31,6 +32,13 @@ public class dataaccess extends Fragment {
     public Button button;
     public LinearLayout LinearLocal;
     public LinearLayout LinearDistance;
+
+
+
+    private int[] compteurs =new int[9];
+    private String[] photos= new String[10];
+    private String[] texts= new String[5];
+
 
     private DBManager dbManager;
 
@@ -115,7 +123,7 @@ public class dataaccess extends Fragment {
 
 
     private String playersOfTheMatch(int numerodumatch){
-        dbManager = new DBManager(this.getContext());
+        dbManager = new DBManager(getContext());
         dbManager.open();
 
 
@@ -125,17 +133,58 @@ public class dataaccess extends Fragment {
         return values.getString(1) + " vs "+ values.getString(2);
     }
 
-    public void myClickHandler(View view) {
-        String tagg = String.valueOf(view.getTag());
+    private void backdatabase(int id){
+        dbManager = new DBManager(getContext());
+        dbManager.open();
 
+        Cursor values = dbManager.fetch();
+        values.move(id);
+
+        Log.d("8","//////////////////////////////////////////////////"+values.getString(8));
+        Log.d("6",""+id);
+
+        for (int i = 0; i <5;i++){
+            texts[i] = values.getString(i + 1);
+        }
+
+        for (int i = 0; i < 8;i++){
+            compteurs[i] = values.getString(6).charAt(i*2);
+        }
+
+        String buffer = "";
+        char j = '0';
+        int cursor = 0;
+
+        for (int i = 0; i < values.getInt(7)-1 ; i++ ){
+
+            while (j != '-'){
+                j = values.getString(8).charAt(cursor);
+                buffer = buffer.concat(j + "");
+                cursor++;
+            }
+
+            photos[i] = buffer;
+            buffer = "";
+        }
+        dbManager.close();
+    }
+
+
+    public void myClickHandler(View view) {
+        //String tagg = String.valueOf(view.getTag());
+        String tagg = view.getTag().toString();
+
+        backdatabase(Integer.parseInt(tagg));
 
         Log.d("****************","///////////////////----------------------------"+tagg);
 
+
         Intent myIntent = new Intent(getContext(), StatisticsActivity.class);
-        myIntent.putExtra("id",tagg);
+        myIntent.putExtra("id", tagg);
+        myIntent.putExtra("photos", photos);
+        myIntent.putExtra("texts", texts);
+        //myIntent.putExtra("compteurs", compteurs);
         startActivity(myIntent);
-
-
     }
 
 }
