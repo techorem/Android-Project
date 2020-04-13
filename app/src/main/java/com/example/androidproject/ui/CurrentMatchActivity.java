@@ -4,10 +4,13 @@ import android.Manifest;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.content.res.Configuration;
+import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
+import android.text.format.DateFormat;
+import android.text.format.DateUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -27,7 +30,9 @@ import java.io.File;
 import java.io.IOException;
 import java.text.MessageFormat;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
+import java.util.TimeZone;
 
 public class CurrentMatchActivity extends AppCompatActivity implements CurrentMatch_j1_fragment.OnFragmentInteractionPlayer1Listener{
 
@@ -52,6 +57,8 @@ public class CurrentMatchActivity extends AppCompatActivity implements CurrentMa
     private int[] compteurs ={0,0,0,0,0,0,0,0,0};
     private String[] photos= new String[10];
     private String[] texts;
+
+    private DBManager dbManager;
 
     //public File getExternalFilesDir(String type);
 
@@ -91,6 +98,11 @@ public class CurrentMatchActivity extends AppCompatActivity implements CurrentMa
             ActivityCompat.requestPermissions(this,new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE,Manifest.permission.CAMERA},200);//MY_PERMISSIONS_REQUEST_ACCESS_FINE_LOCATION
 
         }
+
+        dbManager = new DBManager(this);
+
+        dbManager.open();
+
         /*debugField = (TextView) findViewById(R.id.textview1);
         for (int i =0 ; i< 4 ; i++)
             debugField.setText(debugField.getText() + tab[i]);*/
@@ -156,10 +168,16 @@ public class CurrentMatchActivity extends AppCompatActivity implements CurrentMa
 
         }else if(tagg.equals("finish")) {
 
-            // TODO Ici implémenter dans la base toutes les données : texts[], photos[] et compteurs[]
+            dbManager.insert(texts, compteurs, photos);
 
+            /// zone de tests ///
 
-            Log.d("finisher","finiiiiii ----------------------------------");
+            /*Cursor test = dbManager.fetch();
+            test.moveToNext();
+            String a = test.getString(0) + " " + test.getString(1) + " " + test.getString(2) + " " + test.getString(3) + " " + test.getString(4) + " " + test.getString(5) + " " + test.getString(6) + " " + test.getString(7) + " " + test.getString(8) ;
+
+            Log.d("finisher","_________ " + a + " ___________________________");
+            */
 
             Intent myIntent = new Intent(this, MainActivity.class);
             startActivity(myIntent);
