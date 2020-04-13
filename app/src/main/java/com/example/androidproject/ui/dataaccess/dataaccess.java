@@ -10,6 +10,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -140,9 +141,45 @@ public class dataaccess extends Fragment {
             texts[i] = values.getString(i + 1);
         }
 
-        for (int i = 0; i < 8;i++){
-            compteurs[i] = values.getString(6).charAt(i*2);
+
+        char value = 0;
+        int cursor2 = 0;
+        String stat = "";
+        int statint =0;
+
+        Log.d("value compteur",values.getString(6));
+        for (int i = 1; i < 9;i++){
+
+            while ((value != '-')&&(cursor2 != values.getString(6).length())){
+                value = values.getString(6).charAt(cursor2);
+                stat = stat.concat(value + "");
+
+                cursor2++;
+                if(cursor2 < values.getString(6).length())
+                    value = values.getString(6).charAt(cursor2);
+            }
+            Log.d("value compteur",stat);
+
+            if(stat!=""){
+                if (stat.charAt(stat.length()-1)==('-')){
+                    stat = stat.substring(0, stat.length() - 1);
+
+                }
+                statint = Integer.parseInt(stat);
+            }
+
+
+            compteurs[i] = statint;
+            stat="";
+            statint = 0;
+            cursor2++;
+            if(cursor2 < values.getString(6).length())
+                value = values.getString(6).charAt(cursor2);
+
         }
+
+
+
 
         String buffer = "";
         char j = '0';
@@ -154,10 +191,20 @@ public class dataaccess extends Fragment {
                 j = values.getString(8).charAt(cursor);
                 buffer = buffer.concat(j + "");
                 cursor++;
+                if(cursor < values.getString(8).length())
+                    j = values.getString(8).charAt(cursor);
+            }
+
+            if(buffer!=""){
+                if (buffer.charAt(buffer.length()-1)==('-'))
+                    buffer = buffer.substring(0, buffer.length() - 1);
             }
 
             photos[i] = buffer;
             buffer = "";
+            cursor++;
+            if(cursor < values.getString(8).length())
+                j = values.getString(8).charAt(cursor);
         }
 
         dbManager.close();

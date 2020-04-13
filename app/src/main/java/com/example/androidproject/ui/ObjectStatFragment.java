@@ -214,6 +214,7 @@ public class ObjectStatFragment extends Fragment {
         String stat = "";
         int statint =0;
 
+        Log.d("value compteur",values.getString(6));
         for (int i = 1; i < 9;i++){
 
             while ((value != '-')&&(cursor2 != values.getString(6).length())){
@@ -221,7 +222,10 @@ public class ObjectStatFragment extends Fragment {
                 stat = stat.concat(value + "");
 
                 cursor2++;
+                if(cursor2 < values.getString(6).length())
+                    value = values.getString(6).charAt(cursor2);
             }
+            Log.d("value compteur",stat);
 
             if(stat!=""){
                 if (stat.charAt(stat.length()-1)==('-')){
@@ -243,9 +247,6 @@ public class ObjectStatFragment extends Fragment {
 
 
 
-        /*for (int i = 0; i < 8;i++){
-            compteurs[i] = values.getString(6).charAt(i*2);
-        }*/
 
         String buffer = "";
         char j = '0';
@@ -257,6 +258,8 @@ public class ObjectStatFragment extends Fragment {
                 j = values.getString(8).charAt(cursor);
                 buffer = buffer.concat(j + "");
                 cursor++;
+                if(cursor < values.getString(8).length())
+                    j = values.getString(8).charAt(cursor);
             }
 
             if(buffer!=""){
