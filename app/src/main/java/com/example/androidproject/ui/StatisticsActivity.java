@@ -1,6 +1,7 @@
 package com.example.androidproject.ui;
 
 import android.app.TabActivity;
+import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
@@ -28,8 +29,12 @@ public class StatisticsActivity extends AppCompatActivity {
 
     private int[] compteurs =new int[9];
     private String[] photos= new String[10];
-    private String[] texts= new String[4];
+    private String[] texts= new String[5];
+
     ViewPager2 viewPager;
+
+    private DBManager dbManager;
+
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -67,6 +72,9 @@ public class StatisticsActivity extends AppCompatActivity {
                 }
         ).attach();
 
+        dbManager = new DBManager(this);
+        dbManager.open();
+
     }
 
     private StatsCollectionAdapter createCardAdapter() {
@@ -75,20 +83,34 @@ public class StatisticsActivity extends AppCompatActivity {
     }
 
     private void backdatabase(int id){
-        String[] pt = {"/storage/emulated/0/Android/data/com.example.androidproject/files/Pictures/JPEG_20200413_121159_7201521072081127081.jpg","/storage/emulated/0/Android/data/com.example.androidproject/files/Pictures/JPEG_20200411_180031_3633678634967471160.jpg",
-                "/storage/emulated/0/Android/data/com.example.androidproject/files/Pictures/JPEG_20200411_183839_1400330841427523984.jpg",
-                "/storage/emulated/0/Android/data/com.example.androidproject/files/Pictures/JPEG_20200412_185155_5157237694631528152.jpg"};
-        String[] txt = {"Alexandre","Lilian","poids plumes","Paname"};
-        int[] cpt = {0,5,3,6,2,7,8,9,5};
+
+        Cursor values = dbManager.fetch();
+        values.move(id);
+
+        for (int i = 0; i <5;i++){
+            texts[i] = values.getString(i + 1);
+        }
+
         for (int i = 0; i <9;i++){
-            compteurs[i] = cpt[i];
+            compteurs[i] = values.getString(6).charAt(i*2);
         }
-        for (int i = 0; i <pt.length;i++){
-            photos[i] = pt[i];
+
+        String buffer = "";
+        char j = '0';
+        int cursor = 0;
+
+        for (int i = 0; i < values.getInt(7) ; i++ ){
+
+            while (j != '-'){
+                j = values.getString(8).charAt(cursor);
+                buffer = buffer.concat(j + "");
+                cursor++;
+            }
+
+            photos[i] = buffer;
+            buffer = "";
         }
-        for (int i = 0; i <4;i++){
-            texts[i] = txt[i];
-        }
+
     }
 
     public String[] getPhotos(){
