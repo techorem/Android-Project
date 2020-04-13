@@ -10,6 +10,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -52,15 +53,19 @@ public class dataaccess extends Fragment {
             limitelocal  = numberOfPreviousMatch();
             limitedistance = 0;
         }else{
-            limitelocal = 5;
+            limitelocal = numberOfPreviousMatch();
             limitedistance = numberOfPreviousMatch() - 5;
         }
 
-        for (int i = 0;i<limitelocal;i++){
+        for(int i = 5 ; i >1 ; i --){
+            Log.d("ffff","+++++++++++++++++++++++++++++++++++++"+i);
+        }
+
+        for (int i = limitelocal;i>limitedistance;i--){
 
             button = new Button(getContext());
-            button.setTag(i);
-            button.setText(playersOfTheMatch(i));
+            button.setTag(i-1);
+            button.setText(playersOfTheMatch(i-1));
             button.setTextColor(BLUE);
 
             button.setOnClickListener(new View.OnClickListener() {
@@ -78,10 +83,10 @@ public class dataaccess extends Fragment {
             button.setLayoutParams(lp);
         }
 
-        for (int i = 0;i<limitedistance;i++){
+       for (int i = limitedistance;i > 0;i--){
             button = new Button(getContext());
-            button.setTag(playersOfTheMatch(i));
-            button.setText(playersOfTheMatch(i));
+            button.setTag(i-1);
+            button.setText(playersOfTheMatch(i-1));
             button.setTextColor(BLUE);
             button.setOnClickListener(new View.OnClickListener() {
                 public void onClick(View v) {
@@ -96,12 +101,12 @@ public class dataaccess extends Fragment {
             button.setLayoutParams(lp);
         }
 
-        dbManager = new DBManager(this.getContext());
-        dbManager.open();
 
     }
 
     private int numberOfPreviousMatch(){
+        dbManager = new DBManager(this.getContext());
+        dbManager.open();
 
         Cursor values = dbManager.fetch();
 
@@ -110,6 +115,8 @@ public class dataaccess extends Fragment {
 
 
     private String playersOfTheMatch(int numerodumatch){
+        dbManager = new DBManager(this.getContext());
+        dbManager.open();
 
 
         Cursor values = dbManager.fetch();
@@ -121,7 +128,11 @@ public class dataaccess extends Fragment {
     public void myClickHandler(View view) {
         String tagg = String.valueOf(view.getTag());
 
+
+        Log.d("****************","///////////////////----------------------------"+tagg);
+
         Intent myIntent = new Intent(getContext(), StatisticsActivity.class);
+        myIntent.putExtra("id",tagg);
         startActivity(myIntent);
 
 

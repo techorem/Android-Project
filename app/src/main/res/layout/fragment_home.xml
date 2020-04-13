@@ -29,6 +29,7 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
+        android:text="@string/welcome_on_boxe_tracker"
         android:layout_below="@+id/imageView"
         android:textAlignment="center"
         android:textSize="20sp"

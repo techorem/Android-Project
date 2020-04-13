@@ -30,6 +30,14 @@ public class StatisticsActivity extends AppCompatActivity {
     private int[] compteurs =new int[9];
     private String[] photos= new String[10];
     private String[] texts= new String[5];
+    private int id = 1;
+
+
+    private static final String PHOTOS = "photos";
+    private static final String TEXTS = "texts";
+    private static final String COMPTEURS = "compteurs";
+    private static final String ID = "id";
+
 
     ViewPager2 viewPager;
 
@@ -41,6 +49,11 @@ public class StatisticsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_statistics);
 
+
+        Bundle extras = getIntent().getExtras();
+        id = extras.getInt("id");
+        Log.d("/////////////id ","/////////////////////////////////////////////////"+id);
+
         ActionBar actionBar = this.getSupportActionBar();
         actionBar.setTitle(getString(R.string.stat_of_the_match));
 
@@ -48,7 +61,7 @@ public class StatisticsActivity extends AppCompatActivity {
         viewPager.setAdapter(createCardAdapter());
         TabLayout tabLayout = findViewById(R.id.tab_layout);
 
-        int id = 1;
+
         backdatabase(id);
 
         new TabLayoutMediator(tabLayout, viewPager,
@@ -72,8 +85,6 @@ public class StatisticsActivity extends AppCompatActivity {
                 }
         ).attach();
 
-        dbManager = new DBManager(this);
-        dbManager.open();
 
     }
 
@@ -83,9 +94,14 @@ public class StatisticsActivity extends AppCompatActivity {
     }
 
     private void backdatabase(int id){
+        dbManager = new DBManager(this);
+        dbManager.open();
 
         Cursor values = dbManager.fetch();
         values.move(id);
+
+        Log.d("8","//////////////////////////////////////////////////"+values.getString(8));
+        Log.d("6",values.getString(6));
 
         for (int i = 0; i <5;i++){
             texts[i] = values.getString(i + 1);
@@ -110,22 +126,22 @@ public class StatisticsActivity extends AppCompatActivity {
             photos[i] = buffer;
             buffer = "";
         }
-
+        dbManager.close();
     }
 
     public String[] getPhotos(){
-        backdatabase(2);
+        backdatabase(id);
         Log.d("Statphoto",""+photos[0]);
         return photos;
     }
 
     public String[] getTexts(){
-        backdatabase(2);
+        backdatabase(id);
         return texts;
     }
 
     public int[] getCompteurs(){
-        backdatabase(2);
+        backdatabase(id);
         return compteurs;
     }
 
@@ -158,6 +174,31 @@ public class StatisticsActivity extends AppCompatActivity {
         imageView.setImageBitmap(bitmap);
     }
 */
+
+
+
+    @Override
+    protected void onSaveInstanceState(@NonNull final Bundle outState) {
+        super.onSaveInstanceState(outState);
+
+        outState.putStringArray(PHOTOS,photos);
+        outState.putStringArray(TEXTS,texts);
+        outState.putIntArray(COMPTEURS,compteurs);
+        outState.putInt(ID,id);
+    }
+
+    @Override
+    protected void onRestoreInstanceState(@NonNull final Bundle savedInstanceState) {
+        super.onRestoreInstanceState(savedInstanceState);
+
+        // Read the state of item position
+        photos = savedInstanceState.getStringArray(PHOTOS);
+        texts = savedInstanceState.getStringArray(TEXTS);
+        compteurs = savedInstanceState.getIntArray(COMPTEURS);
+        id = savedInstanceState.getInt(ID);
+
+    }
+
 
 }
 

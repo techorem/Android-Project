@@ -7,7 +7,7 @@
     <string name="nav_header_desc" translatable="false">Navigation header</string>
     <string name="action_settings" translatable="false">Settings</string>
 
-    <string name="menu_home" translatable="false">Home</string>
+    <string name="menu_home">Home</string>
     <string name="menu_newmatch">New Match</string>
     <string name="menu_dataaccess">Previous Match</string>
 
@@ -45,6 +45,9 @@
     <string name="basic_data">Basic Data</string>
     <string name="photos_gallery">"Photos Gallery"</string>
     <string name="choice_categ_1">Light Weight</string>
+    <string name="welcome_on_boxe_tracker">Welcome on Boxe Tracker</string>
+    <string name="current_match">Current Match</string>
+
 
 
 </resources>

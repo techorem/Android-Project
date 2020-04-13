@@ -35,4 +35,7 @@
     <string name="stat_of_the_match">Statistics du Match</string>
     <string name="basic_data">Données Basic</string>
     <string name="photos_gallery">Gallerie Photo</string>
+    <string name="menu_home">Menu Principal</string>
+    <string name="welcome_on_boxe_tracker">Bienvenue sur Boxe Tracker</string>
+    <string name="current_match">Match en Cours</string>
 </resources>

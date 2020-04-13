@@ -68,7 +68,7 @@ public class CurrentMatchActivity extends AppCompatActivity implements CurrentMa
         setContentView(R.layout.activity_currentmatch);
 
         ActionBar actionBar = this.getSupportActionBar();
-        actionBar.setTitle("Current Match");
+        actionBar.setTitle(getString(R.string.current_match));
         setTextbtns();
 
         Bundle extras = getIntent().getExtras();
@@ -99,9 +99,7 @@ public class CurrentMatchActivity extends AppCompatActivity implements CurrentMa
 
         }
 
-        dbManager = new DBManager(this);
 
-        dbManager.open();
 
         /*debugField = (TextView) findViewById(R.id.textview1);
         for (int i =0 ; i< 4 ; i++)
@@ -167,6 +165,11 @@ public class CurrentMatchActivity extends AppCompatActivity implements CurrentMa
             }
 
         }else if(tagg.equals("finish")) {
+
+            dbManager = new DBManager(this);
+
+            dbManager.open();
+
 
             dbManager.insert(texts, compteurs, photos);
 
