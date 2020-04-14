@@ -34,7 +34,6 @@ import android.widget.Toast;
 
 import com.example.androidproject.R;
 import com.example.androidproject.ui.CurrentMatchActivity;
-import com.example.androidproject.ui.DBManager;
 
 import java.io.IOException;
 import java.util.List;
@@ -126,25 +125,20 @@ public class newmatch extends Fragment implements LocationListener, AdapterView.
 
         switch (position) {
             case 0:
-                // Whatever you want to happen when the first item gets selected
                 tab[2] = getString(R.string.choice_categ_1);
                 break;
             case 1:
-                // Whatever you want to happen when the second item gets selected
                 tab[2] = getString(R.string.choice_categ_2);
                 break;
             case 2:
-                // Whatever you want to happen when the third item gets selected
                 tab[2] = getString(R.string.choice_categ_3);
                 break;
-
         }
     }
 
     @Override
     public void onNothingSelected(AdapterView<?> parent) {
         //tab[0] = getString(R.string.choice_categ_1);
-        // TODO Auto-generated method stub
     }
 
 
@@ -191,13 +185,6 @@ public class newmatch extends Fragment implements LocationListener, AdapterView.
         }
         locationManager.removeUpdates(this);
     }
-
-    /*public void onDataChanged(){
-        debugField = (TextView) getView().findViewById(R.id.TextView06);
-        for (int i =0 ; i< 4 ; i++)
-            debugField.setText(debugField.getText() + tab[i]);
-
-    }*/
 
     @Override
     public void onLocationChanged(Location location) {

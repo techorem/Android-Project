@@ -165,33 +165,23 @@ public class CurrentMatchActivity extends AppCompatActivity implements CurrentMa
             }
 
         }else if(tagg.equals("finish")) {
-
             dbManager = new DBManager(this);
-
             dbManager.open();
-
-
             dbManager.insert(texts, compteurs, photos);
-
             /// zone de tests ///
-
             /*Cursor test = dbManager.fetch();
             test.moveToNext();
             String a = test.getString(0) + " " + test.getString(1) + " " + test.getString(2) + " " + test.getString(3) + " " + test.getString(4) + " " + test.getString(5) + " " + test.getString(6) + " " + test.getString(7) + " " + test.getString(8) ;
-
             Log.d("finisher","_________ " + a + " ___________________________");
             */
-
             Intent myIntent = new Intent(this, MainActivity.class);
             startActivity(myIntent);
         }else{
             int i = Integer.parseInt(tagg);
             compteurs[i]++;
-            //view.setText()
             Button boutonscompteurs = view.findViewById(view.getId());
             boutonscompteurs.setText(MessageFormat.format("{0} {1}", textat, compteurs[i]));
         }
-
     }
 
     @Override

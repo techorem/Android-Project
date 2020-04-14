@@ -85,13 +85,11 @@ public class ObjectStatFragment extends Fragment {
         id = Integer.parseInt(s);
 
         if( args.getInt(ARG_OBJECT) == 1){
-
             backdatabase(id);
             setBasic();
         }
         if( args.getInt(ARG_OBJECT) == 2){
             backdatabase(id);
-
             setStat1();
         }
         if( args.getInt(ARG_OBJECT) == 3){
@@ -181,7 +179,6 @@ public class ObjectStatFragment extends Fragment {
     public void setPic() {
 
         for(int i= 0; i < photos.length;i++){
-            Log.d("photo"+i,"////////////////////////////////////////////////////////////"+photos[i]);
             ImageView image = new ImageView(getContext());
             LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
             image.setLayoutParams(lp);
@@ -214,7 +211,6 @@ public class ObjectStatFragment extends Fragment {
         String stat = "";
         int statint =0;
 
-        Log.d("value compteur",values.getString(6));
         for (int i = 1; i < 9;i++){
 
             while ((value != '-')&&(cursor2 != values.getString(6).length())){
@@ -225,7 +221,6 @@ public class ObjectStatFragment extends Fragment {
                 if(cursor2 < values.getString(6).length())
                     value = values.getString(6).charAt(cursor2);
             }
-            Log.d("value compteur",stat);
 
             if(stat!=""){
                 if (stat.charAt(stat.length()-1)==('-')){
